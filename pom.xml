@@ -13,7 +13,7 @@
         <module>eureka-server</module>
         <module>articles-jpa-service</module>
         <module>main-gateway-service</module>
-        <module>articles-censor-service</module>
+        <!--<module>articles-censor-service</module>-->
     </modules>
 
     
