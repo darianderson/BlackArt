@@ -1,0 +1,1 @@
+INSERT INTO ARTICLE VALUES (default, 'Title', 'This is fucking text', 'Dart Vader', 'dartvader@empier.com', 10, 0);

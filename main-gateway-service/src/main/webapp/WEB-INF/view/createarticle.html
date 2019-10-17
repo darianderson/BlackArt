@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="header-wrap">
+        <div id="header" class="container_16">
+            <h1 id="logo-text">
+                <a href="index.html" title="">WEB NEWS</a>
+            </h1>
+            <p id="intro">The best curated news</p>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="article1.html">Article</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="header-image"></div>
+            <form id="quick-search" action="index.html" method="get">
+                <p>
+                    <label for="qsearch">Search:</label>
+                    <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Search" title="Start typing and hit ENTER">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                </p>
+            </form>
+        </div>
+    </div>
+    <div class="article-create__head">
+        <h1>New article</h1>
+    </div>
+    <main class="main_article">
+        <form class="registration_form" action="register.php" method="GET">
+            <div class="field">
+                <label class="labeltest"><input class="inputest" type="text" name="article_name" placeholder="Title" required=""></label>
+                <label class="labeltest"><input class="inputest" type="text" name="hashtag" placeholder="#Hashtag" required=""></label>
+                <textarea class="form_textarea" name="about_yourself" id="#" cols="70" rows="8" placeholder="Article description"></textarea>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <div class="example-1">
+                    <div class="form-group">
+                        <label class="label"><i class="material-icons">attach_file</i><span class="title">       Add a file</span><input type="file"></label>
+                        <input type="submit" value="Add article" class="add_article">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <div id="footer-wrapper" class="container_16">
+        <div id="footer-bottom">
+            <p class="bottom-left">
+                &nbsp; ©2019 All your copyright info here &nbsp; &nbsp;
+            </p>
+
+            <p class="bottom-right">
+                <a href="index.html">Home</a> |
+                <a href="index.html">Blog</a> |
+            </p>
+        </div>
+    </div>
+</body>
+</footer>
+
+</html>
