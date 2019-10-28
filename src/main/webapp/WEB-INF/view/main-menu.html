@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
+</head>
+
+<body>
+    <div id="header-wrap">
+        <div id="header" class="container_16">
+            <h1 id="logo-text">
+                <a href="main-menu.html" title="">WEB NEWS</a>
+            </h1>
+            <p id="intro">The best curated news</p>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="main-menu.html">Home</a>
+                        <li>
+                            <a href="article.html">Article</a>
+                        </li>
+                </ul>
+            </div>
+            <div id="header-image"></div>
+            <form id="quick-search" action="main-menu.html" method="get">
+                <p>
+                    <label for="qsearch">Search:</label>
+                    <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Search" title="Start typing and hit ENTER">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                </p>
+            </form>
+        </div>
+    </div>
+    <main>
+        <div class="article" th:each="art: ${articles}">
+            <div class="article-head">
+                <div class="article-img">
+                    <img th:src="${'/resourses/images/fiona.jpg'}" alt="fiona11">
+                </div>
+            </div>
+            <div class="block2">
+                <h3 class="h3_edit" th:text="${art.title}"></h3>
+                <div class="article-hashtag">#Trump, #Washington</div>
+                <div class="article-include">
+                    <div class="article-content">
+                        <p th:text="${art.text}">WASHINGTON (AP) — A U.S. ambassador is expected to tell Congress that his text message reassuring another envoy that there was no quid pro quo in their interactions with Ukraine was based solely...</p>
+                        <a class="link" th:href="'/' + ${art.id}">read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="block">
+        <a href="/create" class="button29">
+            <p class="article-button__plus">+</p>
+        </a>
+    </div>
+    <div id="footer-wrapper" class="container_16">
+        <div id="footer-bottom">
+
+            <p class="bottom-left">
+                &nbsp; ©2019 AVPZ &nbsp; &nbsp;
+            </p>
+
+            <p class="bottom-right">
+                <a href="main-menu.html">Home</a> |
+                <a href="main-menu.html">Blog</a> |
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

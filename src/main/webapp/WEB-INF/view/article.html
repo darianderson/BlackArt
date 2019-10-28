@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
+</head>
+
+<body>
+    <div id="header-wrap">
+        <div id="header" class="container_16">
+            <h1 id="logo-text">
+                <a href="index.html" title="">WEB NEWS</a>
+            </h1>
+            <p id="intro">The best curated news</p>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="article.html">Article</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="header-image"></div>
+            <form id="quick-search" action="index.html" method="get">
+                <p>
+                    <label for="qsearch">Search:</label>
+                    <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Search" title="Start typing and hit ENTER">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                </p>
+            </form>
+        </div>
+    </div>
+    <main>
+        <h1 th:text="${art.title}"></h1>
+        <div class="article-image"><img src="img/fiona.jpeg" alt="fiona"></div>
+        <div class="Article" data-key="article">
+            <p th:text="${art.text}"></p>
+        </div>
+    </main>
+    <div id="footer-wrapper" class="container_16">
+        <div id="footer-bottom">
+
+            <p class="bottom-left">
+                &nbsp; ©2019 All your copyright info here &nbsp; &nbsp;
+            </p>
+
+            <p class="bottom-right">
+                <a href="index.html">Home</a> |
+                <a href="index.html">Blog</a> |
+            </p>
+
+        </div>
+    </div>
+</body>
+</footer>
+
+</html>
