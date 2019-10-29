@@ -16,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class ArticleController {
 
     private static final String MAIN = "main-menu";
-    private static final String REDIRECT_INDEX = "redirect:/article1/";
+    private static final String REDIRECT_INDEX = "redirect:/article/";
 
     private ArticleRepository articleRepository;
 
     @GetMapping("/")
     public ModelAndView getArticles() {
-        ModelAndView modelAndView = new ModelAndView("main-menu");
+        ModelAndView modelAndView = new ModelAndView(MAIN);
         modelAndView.addObject("articles", articleRepository.findAll());
         return modelAndView;
     }
@@ -47,7 +47,7 @@ public class ArticleController {
         art.setText(text);
         art.setTitle(title);
         articleRepository.save(art);
-        return new ModelAndView("main-menu");
+        return new ModelAndView(MAIN);
     }
 
 

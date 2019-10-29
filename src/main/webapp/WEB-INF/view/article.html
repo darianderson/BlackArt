@@ -15,13 +15,13 @@
     <div id="header-wrap">
         <div id="header" class="container_16">
             <h1 id="logo-text">
-                <a href="index.html" title="">WEB NEWS</a>
+                <a href="/" title="">WEB NEWS</a>
             </h1>
             <p id="intro">The best curated news</p>
             <div id="nav">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li>
                         <a href="article.html">Article</a>
@@ -33,14 +33,16 @@
                 <p>
                     <label for="qsearch">Search:</label>
                     <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Search" title="Start typing and hit ENTER">
-                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="resources/images/search.gif">
                 </p>
             </form>
         </div>
     </div>
     <main>
         <h1 th:text="${art.title}"></h1>
-        <div class="article-image"><img src="img/fiona.jpeg" alt="fiona"></div>
+        <div class="article-image">
+            <img th:src="@{${'/resources/images/' +art.id + '.jpg'}}" alt="img"/>
+        </div>
         <div class="Article" data-key="article">
             <p th:text="${art.text}"></p>
         </div>
@@ -53,8 +55,8 @@
             </p>
 
             <p class="bottom-right">
-                <a href="index.html">Home</a> |
-                <a href="index.html">Blog</a> |
+                <a href="/">Home</a> |
+                <a href="/">Blog</a> |
             </p>
 
         </div>

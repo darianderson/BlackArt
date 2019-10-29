@@ -15,13 +15,13 @@
     <div id="header-wrap">
         <div id="header" class="container_16">
             <h1 id="logo-text">
-                <a href="main-menu.html" title="">WEB NEWS</a>
+                <a href="/" title="">WEB NEWS</a>
             </h1>
             <p id="intro">The best curated news</p>
             <div id="nav">
                 <ul>
                     <li>
-                        <a href="main-menu.html">Home</a>
+                        <a href="/">Home</a>
                         <li>
                             <a href="article.html">Article</a>
                         </li>
@@ -32,7 +32,7 @@
                 <p>
                     <label for="qsearch">Search:</label>
                     <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Search" title="Start typing and hit ENTER">
-                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="resources/images/search.gif">
                 </p>
             </form>
         </div>
@@ -41,16 +41,16 @@
         <div class="article" th:each="art: ${articles}">
             <div class="article-head">
                 <div class="article-img">
-                    <img th:src="${'/resourses/images/fiona.jpg'}" alt="fiona11">
+                    <img th:src="@{${'/resources/images/' +art.id + '.jpg'}}" alt="img"/>
                 </div>
             </div>
             <div class="block2">
                 <h3 class="h3_edit" th:text="${art.title}"></h3>
-                <div class="article-hashtag">#Trump, #Washington</div>
+                <div class="article-hashtag">#Engineer, #Programming</div>
                 <div class="article-include">
                     <div class="article-content">
-                        <p th:text="${art.text}">WASHINGTON (AP) — A U.S. ambassador is expected to tell Congress that his text message reassuring another envoy that there was no quid pro quo in their interactions with Ukraine was based solely...</p>
-                        <a class="link" th:href="'/' + ${art.id}">read more</a>
+                        <p th:text="${art.text}"></p>
+                        <a class="link" th:href="'/' + ${art.id}" style="color:forestgreen">read more</a>
                     </div>
                 </div>
             </div>
@@ -69,8 +69,8 @@
             </p>
 
             <p class="bottom-right">
-                <a href="main-menu.html">Home</a> |
-                <a href="main-menu.html">Blog</a> |
+                <a href="/">Home</a> |
+                <a href="/">Blog</a> |
             </p>
         </div>
     </div>
