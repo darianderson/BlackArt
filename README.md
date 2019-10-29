@@ -10,7 +10,7 @@ Clone or download BlackArt from github repo or download .zip file
 1. Open your IDE and import BlackArt as Maven Project;
      ```
      Import -> Import as Maven project
-         ```
+     ```
 2. Wait until all dependecies are set;
 3. Run BlackartApplication.class
 
