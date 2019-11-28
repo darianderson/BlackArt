@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
@@ -41,6 +41,7 @@
             </p>
         </form>
     </div>
+
 </div>
 <div class="article-create__head">
     <h1>New article</h1>
@@ -68,10 +69,37 @@
                     <!--</label>-->
 
                     <input type="submit" value="Add article" class="add_article">
+
+    <div class="article-create__head">
+        <h1>New article</h1>
+    </div>
+    <main class="main_article">
+        <form class="registration_form" method="POST">
+            <div class="field">
+                <label class="labeltest">
+                    <input class="inputest" type="text" name="title" placeholder="Title" required=""></label>
+                <!--<label class="labeltest">-->
+                    <!--<input class="inputest" type="text" name="hashtag" placeholder="#Hashtag" required="">-->
+                <!--</label>-->
+		<div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> #ХНУРЭ</div>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#ЛЕЩ</div>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#СОКАР</div>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#ПРОГРАМА</div>
+                <textarea class="form_textarea" name="text" id="#" cols="70" rows="8" placeholder="Article description"></textarea>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <div class="example-1">
+                    <div class="form-group">
+                        <label class="label"><i class="material-icons">attach_file</i><span class="title">Add a file</span><input type="file"></label>
+                        <input type="submit" value="Add article" class="add_article">
+                    </div>
                 </div>
             </div>
-        </div>
     </form>
+</main>
 
     <script type="text/javascript">
         $("#artcreate").submit(function (e) {
@@ -117,7 +145,6 @@
     </form>
 
 
-</main>
 
 <div id="footer-wrapper" class="container_16">
     <div id="footer-bottom">

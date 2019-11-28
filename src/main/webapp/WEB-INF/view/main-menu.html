@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
@@ -35,6 +35,13 @@
                     <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="resources/images/search.gif">
                 </p>
             </form>
+	    <form id="hash-search" action="main-menu.html" method="get">
+               	<p>
+                    <label for="qsearch">Hashtag:</label>
+                    <input class="tbox" id="qsearch" type="text" name="qsearch" placeholder="Hashtag" title="Start typing and hit ENTER">
+                    <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="images/search.gif">
+                </p>
+            </form>
         </div>
     </div>
     <main>
@@ -48,7 +55,18 @@
             <div class="block2">
                 <h3 class="h3_edit" th:text="${art.title}"></h3>
 
+
                 <!--<div class="article-hashtag" th:text="${art.tags}"></div>-->
+
+
+                <div class="hashtag_article">
+                    <div class="alert1">
+                        #tester
+                    </div>
+                    <div class="alert1">
+                        #washington
+                    </div>
+                </div>
 
                 <div class="article-include">
                     <div class="article-content">
