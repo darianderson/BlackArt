@@ -864,3 +864,57 @@ a.link:focus:after {
     white-space: normal;
     text-align: justify;
 }
+.alert {
+    padding: 5px;
+    background-color: #407929;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+    color: #407929;
+    text-align: center;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+    background: #c5faad;
+    background-clip: padding-box;
+    border: 1px solid #2e7328;
+    border-bottom-color: #226625;
+    background-image: -webkit-linear-gradient(top, #d4fed0, #a4ed96);
+    background-image: -moz-linear-gradient(top, #d9fed0, #a4ed96);
+    background-image: -o-linear-gradient(top, #ddfed0, #a4ed96);
+    background-image: linear-gradient(to bottom, #d4fed0, #a0ed96);
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), inset 0 0 7px rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), inset 0 0 7px rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Крестик */
+
+.closebtn {
+    margin-left: 5px;
+    color: rgb(44, 44, 44);
+    font-weight: bold;
+    float: right;
+    font-size: 26px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.hashtag_article {
+    text-align: right;
+    margin-right: 2%;
+}
+
+.alert1 {
+    padding: 5px;
+    background-color: #93b876;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
