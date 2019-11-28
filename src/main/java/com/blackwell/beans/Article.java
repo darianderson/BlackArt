@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "ARTICLE")
+@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +19,8 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
+
+    @Column(columnDefinition="TEXT")
     private String text;
     private String author;
     private String authorsEmail;
@@ -26,11 +28,7 @@ public class Article {
     private int negativeFeedback;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @CollectionTable(name = "ARTICLE_TAG",
-            joinColumns = @JoinColumn(name = "idTag"))
-    protected List<Tag> contentTags = new LinkedList<>();
-
-
+    private List<Tag> tags;
 
 
 }

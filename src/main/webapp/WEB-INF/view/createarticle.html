@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:form="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +10,56 @@
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var hashtags = [];
+
+            $("#hashtag").keypress(function(e) {
+                e.preventDefault();
+                if(e.key === "Enter") {
+                    hashtags.push($("#hashtag").val());
+                    $("#hashtags-field").append("<div class=\"alert\">\n" +
+                        "                        <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>"+$("#hashtag").val()+"</div>");
+
+                    $("#hashtag").val('');
+                }
+                $("#hashtag").val($("#hashtag").val() + e.key);
+            });
+
+            $("#artcreate").submit(function (e) {
+                e.preventDefault();
+                $(this).prop('disabled', true);
+
+                let formData = new FormData();
+                formData.append("title", $("#title").val());
+                formData.append("text", $("#text").val());
+                formData.append("tags", hashtags);
+                // Ajax call for file uploaling
+                $.ajax({
+                    url: '/create',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        let formData2 = new FormData();
+                        formData2.append("id" , data);
+                        formData2.append("upload", $("#upload-file-input")[0].files[0]);
+                        $.ajax({
+                            url: '/uploadFile',
+                            type: 'POST',
+                            data: formData2,
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -43,27 +92,24 @@
     </div>
 
 </div>
-
     <div class="article-create__head">
         <h1>New article</h1>
     </div>
     <main class="main_article">
-        <form class="registration_form" method="POST">
+        <form class="registration_form" id="artcreate">
             <div class="field">
                 <label class="labeltest">
-                    <input class="inputest" type="text" name="title" placeholder="Title" required=""></label>
+                    <input class="inputest" type="text" name="title" id="title" placeholder="Title" required=""></label>
                 <label class="labeltest">
-                    <input class="inputest" type="text" name="hashtag" placeholder="#Hashtag" required="">
+                    <input class="inputest" type="text" name="hashtag" placeholder="#Hashtag" id="hashtag">
                 </label>
-		<div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> #ХНУРЭ</div>
-                <div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#ЛЕЩ</div>
-                <div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#СОКАР</div>
-                <div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#ПРОГРАМА</div>
-                <textarea class="form_textarea" name="text" id="#" cols="70" rows="8" placeholder="Article description"></textarea>
+
+                <div id="hashtags-field">
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>#ЛЕЩ</div>
+                </div>
+
+                <textarea class="form_textarea" name="text" id="text" cols="70" rows="8" placeholder="Article description"></textarea>
 
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 <div class="example-1">
@@ -77,41 +123,6 @@
             </div>
         </form>
     </main>
-
-    <script type="text/javascript">
-        $("#artcreate").submit(function (e) {
-            e.preventDefault();
-            $(this).prop('disabled', true);
-
-            let formData = new FormData();
-            formData.append("title", $("#title").val());
-            formData.append("text", $("#text").val());
-
-            // Ajax call for file uploaling
-            $.ajax({
-                url: '/create',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    let formData2 = new FormData();
-                    formData2.append("id" , data);
-                    formData2.append("upload", $("#upload-file-input")[0].files[0]);
-                    $.ajax({
-                        url: '/uploadFile',
-                        type: 'POST',
-                        data: formData2,
-                        cache: false,
-                        contentType: false,
-                        processData: false
-                    });
-                }
-            });
-        });
-
-    </script>
 
 
 <div id="footer-wrapper" class="container_16">

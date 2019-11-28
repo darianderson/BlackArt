@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,7 @@ public class ArticleController {
 
     private static String UPLOADED_FOLDER = "\\resources\\images";
 
-
     private ArticleRepository articleRepository;
-    private TagRepository tagRepository;
-
-
 
     @GetMapping("/")
     public ModelAndView getArticles() {
@@ -45,7 +42,6 @@ public class ArticleController {
         modelAndView.addObject("articles", articleRepository.findAll());
         return modelAndView;
     }
-
 
     @GetMapping("/{id}")
     public ModelAndView getArticle(@PathVariable long id) {
@@ -61,10 +57,14 @@ public class ArticleController {
 
     @PostMapping("/create")
     @ResponseBody
-    public String processAJAXRequest(String title, String text,RedirectAttributes redirectAttributes) {
+    public String processAJAXRequest(String title, String text, String[] tags, RedirectAttributes redirectAttributes) {
         Article art = new Article();
         art.setText(text);
         art.setTitle(title);
+        art.setTags(Arrays.stream(tags)
+                .map(Tag::new)
+                .collect(Collectors.toList()));
+
         articleRepository.save(art);
         redirectAttributes.addFlashAttribute("id", art.getId());
         return String.format("%d", art.getId());

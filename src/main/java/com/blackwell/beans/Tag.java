@@ -8,21 +8,21 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TAG")
+@Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idTag;
+    private long id;
 
-    private String nameTag;
+    private String name;
 
-
-
+    public Tag(String name) {
+        this.name = name;
+    }
 
 }

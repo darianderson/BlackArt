@@ -53,11 +53,8 @@
 
 
                 <div class="hashtag_article">
-                    <div class="alert1">
-                        #tester
-                    </div>
-                    <div class="alert1">
-                        #washington
+                    <div class="alert1" th:each="tag: ${art.tags}">
+                        <p th:text="'#' + ${tag.name}"></p>
                     </div>
                 </div>
 
