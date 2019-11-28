@@ -1,16 +1,19 @@
 package com.blackwell.beans;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
-@Table
+@Table(name = "ARTICLE")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,60 +25,12 @@ public class Article {
     private int positiveFeedback;
     private int negativeFeedback;
 
-    public long getId() {
-        return id;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    @CollectionTable(name = "ARTICLE_TAG",
+            joinColumns = @JoinColumn(name = "idTag"))
+    protected List<Tag> contentTags = new LinkedList<>();
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getAuthorsEmail() {
-        return authorsEmail;
-    }
-
-    public void setAuthorsEmail(String authorsEmail) {
-        this.authorsEmail = authorsEmail;
-    }
-
-    public int getPositiveFeedback() {
-        return positiveFeedback;
-    }
-
-    public void setPositiveFeedback(int positiveFeedback) {
-        this.positiveFeedback = positiveFeedback;
-    }
-
-    public int getNegativeFeedback() {
-        return negativeFeedback;
-    }
-
-    public void setNegativeFeedback(int negativeFeedback) {
-        this.negativeFeedback = negativeFeedback;
-    }
 
 }

@@ -3,7 +3,7 @@
 ### Setup 
 Clone or download BlackArt from github repo or download .zip file
     ```
-    git clone https://github.com/darianderson/PizzaApp.git
+    git clone https://github.com/darianderson/BlackArt.git
     ``` 
    
 ### Import and Run

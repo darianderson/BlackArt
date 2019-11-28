@@ -38,7 +38,8 @@
         </div>
     </div>
     <main>
-        <div class="article" th:each="art: ${articles}">
+        <div class="article" th:each="art: ${articles}" >
+            <!--th:each="tag : ${artags}"-->
             <div class="article-head">
                 <div class="article-img">
                     <img th:src="@{${'/resources/images/' +art.id + '.jpg'}}" alt="img"/>
@@ -46,7 +47,9 @@
             </div>
             <div class="block2">
                 <h3 class="h3_edit" th:text="${art.title}"></h3>
-                <div class="article-hashtag">#Engineer, #Programming</div>
+
+                <!--<div class="article-hashtag" th:text="${art.tags}"></div>-->
+
                 <div class="article-include">
                     <div class="article-content">
                         <p th:text="${art.text}"></p>
@@ -56,6 +59,7 @@
             </div>
         </div>
     </main>
+
     <div class="block">
         <a href="/create" class="button29">
             <p class="article-button__plus">+</p>

@@ -1,14 +1,27 @@
 package com.blackwell.controllers;
 
 import com.blackwell.beans.Article;
+
+import com.blackwell.beans.Tag;
 import com.blackwell.repository.ArticleRepository;
+import com.blackwell.repository.TagRepository;
 import lombok.AllArgsConstructor;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping
@@ -18,7 +31,13 @@ public class ArticleController {
     private static final String MAIN = "main-menu";
     private static final String REDIRECT_INDEX = "redirect:/article/";
 
+    private static String UPLOADED_FOLDER = "\\resources\\images";
+
+
     private ArticleRepository articleRepository;
+    private TagRepository tagRepository;
+
+
 
     @GetMapping("/")
     public ModelAndView getArticles() {
@@ -31,7 +50,7 @@ public class ArticleController {
     @GetMapping("/{id}")
     public ModelAndView getArticle(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("article");
-        modelAndView.addObject("art", articleRepository.findById(id).get() );
+        modelAndView.addObject("art", articleRepository.findById(id).get());
         return modelAndView;
     }
 
@@ -40,15 +59,34 @@ public class ArticleController {
         return new ModelAndView("createarticle");
     }
 
-
     @PostMapping("/create")
-    public ModelAndView createArticle(String title, String text) {
+    @ResponseBody
+    public String processAJAXRequest(String title, String text,RedirectAttributes redirectAttributes) {
         Article art = new Article();
         art.setText(text);
         art.setTitle(title);
         articleRepository.save(art);
-        return new ModelAndView(MAIN);
+        redirectAttributes.addFlashAttribute("id", art.getId());
+        return String.format("%d", art.getId());
     }
 
+    @PostMapping("/uploadFile")
+    @ResponseBody
+    public ResponseEntity<?> uploadFile(MultipartFile upload,HttpSession session, String id) {
 
+        try {
+            final String UPLOADED_PATH = session.getServletContext().getRealPath("/")
+                    + UPLOADED_FOLDER + File.separator +  id + "." + FilenameUtils.getExtension(upload.getOriginalFilename());
+
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(new FileOutputStream(new File(UPLOADED_PATH)));
+            stream.write(upload.getBytes());
+            stream.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -6,4 +6,33 @@ INSERT INTO ARTICLE(id, title, text, author, authors_email, positive_feedback, n
 (default, 'Using React UI Components to Create a Live Audio Spectrum','Try the working live demo of the project.The source code for the project can be found in the GitHub repository.This article assumes knowledge of React Hooks and some familiarity with visualizations with Web Audio API.The Web Audio API’s AnalyserNode feature can be used to “provide real-time frequency and time-domain analysis information, for the purposes of data analysis and visualization”.When used in conjunction with React, some cool possibilities become available for how the data can be visualized.The AnalyserNode is used for retrieving an array of amplitude values for a specified number of frequency bands by performing a fast Fourier transform (FFT) analysis.This process, followed by a useState() Hook, can be used within a requestAnimationFrame() loop to rapidly update the current state of the functional component with an array of amplitude values.','Matt Eric','eric@gmail.com', 8,1),
 (default, 'Spring Boot With H2 Database','In this tutorial, we will explore using H2 with Spring Boot. Just like other databases, there is full intrinsic support for it in the Spring Boot ecosystem.The H2 database is fully compatible with Spring Boot. We have seen how to configure it and how to use the H2 console for managing our running database.The complete source code is available over on Github.','Eugen Baeldung','baeldung@gmail.com',10,0);
 
-delete from ARTICLE where id=6;
+
+INSERT INTO TAG (idTag,nameTag) VALUES
+(default , 'programming'),
+(default ,'react'),
+(default ,'spring');
+
+
+
+INSERT INTO ARTICLE_TAG (id, idTag) VALUES
+ ((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = '5 Ways to animate a React app in 2019.'),
+  (SELECT COALESCE(idTag, 'Default Value') FROM    TAG WHERE  nameTag = 'react')),
+
+((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = '5 Ways to animate a React app in 2019.'),
+ (SELECT COALESCE(idTag, 'Default Value') FROM   TAG WHERE  nameTag = 'programming')),
+
+ ((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = 'Spring Boot With H2 Database'),
+ (SELECT COALESCE(idTag, 'Default Value') FROM    TAG WHERE  nameTag = 'spring')),
+
+ ((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = 'Spring Boot With H2 Database'),
+ (SELECT COALESCE(idTag, 'Default Value') FROM   TAG WHERE  nameTag = 'programming')),
+
+ ((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = 'Actually, I was biologically designed to be an engineer.'),
+ (SELECT COALESCE(idTag, 'Default Value') FROM    TAG WHERE  nameTag = 'programming')),
+
+ ((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = 'Using React UI Components to Create a Live Audio Spectrum'),
+ (SELECT COALESCE(idTag, 'Default Value') FROM   TAG WHERE  nameTag = 'react')),
+
+((SELECT COALESCE(id, 'Default Value') FROM   ARTICLE WHERE  title = 'SOLID Principles every Developer Should Know'),
+(SELECT COALESCE(idTag, 'Default Value') FROM   TAG WHERE  nameTag = 'programming'));
+
